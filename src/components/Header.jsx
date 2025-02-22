@@ -5,7 +5,7 @@ export default function Header() {
                 <img src="../src/assets/logo.jpg" alt="ReactMeals logo" />
                 <h1>ReactMeals</h1>
             </div>
-            <button>Cart</button>
+            <button className="button">Cart</button>
         </header>
     )
 }
