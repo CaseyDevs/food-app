@@ -1,37 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Product from './Product.jsx'
+import { ProductsContext } from '../store/products-context.jsx'
 
 export default function Products() {
-    const [products, setProducts] = useState([]);  
-    const [isLoading, setIsLoading] = useState(false);
-
-    // TODO: Present loading state
-
-    // Load products from the backend
-    useEffect(() => {
-        setIsLoading(true); 
-        async function loadProducts() {
-            try {
-                const response = await fetch('http://localhost:3000/meals');
-                const products = await response.json();
-                setProducts(products);
-                setIsLoading(false);
-            } catch (error) {
-                console.log(error)
-                setIsLoading(false);
-            }
-        }
-        loadProducts();
-    }, []);
+    const productsContext = useContext(ProductsContext);
 
     // Show loading state while fetching products
-    if (isLoading) {
+    if (productsContext.isLoading) {
         return <p className="center">Loading Products...</p>
     }
 
+    // Show products
     return (
         <ul id="meals">
-            {products.map((product) => {
+            {productsContext.products && productsContext.products.map((product) => {
                 return (
                     <Product 
                         key={product.id}
@@ -42,6 +24,7 @@ export default function Products() {
                     />
                 )
             })}
+            {!productsContext.products && <p>No products found.</p>}
         </ul>
     )
 }
