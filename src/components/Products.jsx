@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import Product from './Product.jsx'
 
 export default function Products() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);  
 
+    // Load products from the backend
     useEffect(() => {
         async function loadProducts() {
             try {
