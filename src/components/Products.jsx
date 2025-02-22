@@ -21,7 +21,7 @@ export default function Products() {
     }, []);
 
     return (
-        <ul>
+        <ul id="meals">
             {products.map((product) => {
                 return (
                     <Product 
