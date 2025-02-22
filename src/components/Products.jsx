@@ -22,12 +22,15 @@ export default function Products() {
     return (
         <ul>
             {products.map((product) => {
-                <Product 
-                    name={product.name} 
-                    price={product.price} 
-                    description={product.description}
-                    image={product.image}
-                />
+                return (
+                    <Product 
+                        key={product.id}
+                        name={product.name}
+                        price={product.price} 
+                        description={product.description}
+                        image={product.image}
+                    />
+                )
             })}
         </ul>
     )
