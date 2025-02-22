@@ -1,6 +1,12 @@
-export default function Product({name, price, description, image}) {
+import { useContext } from 'react';
+import { CartContext } from '../store/cart-context.jsx';
+
+export default function Product({id, name, price, description, image}) {
+    const cartContext = useContext(CartContext);
+
     function handleAddToCart() {
-        console.log('Adding to cart');
+        cartContext.addItemToCart(id);
+        console.log(cartContext.items);
     }
 
     return (

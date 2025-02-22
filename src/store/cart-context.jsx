@@ -1,11 +1,11 @@
-import { createContext } from 'react';
+import { createContext, useState, useContext } from 'react';
 import { ProductsContext } from './products-context';
 
 export const CartContext = createContext({
     items: [],
-    addItem: (id) => {},
-    removeItem: (id) => {},
-    updateItemQuantity: (id, amount) => {},
+    addItemToCart: () => {},
+    removeItemFromCart: () => {},
+    updateItemQuantity: () => {},
 });
 
 export function CartContextProvider({ children }) {
@@ -14,24 +14,26 @@ export function CartContextProvider({ children }) {
 
     // Add item to cart
     function handleAddItemToCart(id) {
-        const existingCartItem = items.find((item) => item.id === id);
+        setItems((prevItems) => {
+            const existingCartItemIndex = prevItems.findIndex((item) => item.id === id);
 
-        if (existingCartItem) {
-            const updatedItem = {
-                ...existingCartItem,
-                quantity: existingCartItem.quantity + 1,
-            };
-            setItems((prevItems) => [...prevItems, updatedItem]);
-        } else {
-            const product = productsContext.products.find((product) => product.id === id);
-            const newItem = {
-                id: id,
-                name: product.name,
-                price: product.price,
-                quantity: 1,
-            };
-            setItems((prevItems) => [...prevItems, newItem]);
-        }
+            if (existingCartItemIndex > -1) {
+                const updatedItems = [...prevItems];
+                updatedItems[existingCartItemIndex] = {
+                    ...prevItems[existingCartItemIndex],
+                    quantity: prevItems[existingCartItemIndex].quantity + 1,
+                };
+                return updatedItems;
+            } else {
+                const product = productsContext.products.find((product) => product.id === id);
+                return [...prevItems, {
+                    id: id,
+                    name: product.name,
+                    price: product.price,
+                    quantity: 1,
+                }];
+            }
+        });
     }
 
     // Remove item from cart

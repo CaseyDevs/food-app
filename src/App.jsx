@@ -1,15 +1,16 @@
 import Products from "./components/Products";
 import Header from "./components/Header";
 import { ProductsContextProvider } from "./store/products-context";
+import { CartContextProvider } from "./store/cart-context";
 
 function App() {
   return (
-    <>
-      <Header />
-      <ProductsContextProvider>
+    <ProductsContextProvider>
+      <CartContextProvider>
+        <Header />
         <Products />
-      </ProductsContextProvider>
-    </>
+      </CartContextProvider>
+    </ProductsContextProvider>
   );
 }
 

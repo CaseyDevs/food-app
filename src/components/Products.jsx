@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import Product from './Product.jsx'
 import { ProductsContext } from '../store/products-context.jsx'
 
@@ -16,7 +16,8 @@ export default function Products() {
             {productsContext.products && productsContext.products.map((product) => {
                 return (
                     <Product 
-                        key={product.id}
+                        id={product.id}
+                        key={product.id + product.name}
                         name={product.name}
                         price={product.price} 
                         description={product.description}

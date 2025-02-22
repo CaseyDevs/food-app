@@ -9,7 +9,7 @@ export const ProductsContext = createContext({
 export const ProductsContextProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
+    
     // Load products from the backend
     useEffect(() => {
         setIsLoading(true); 
@@ -28,6 +28,7 @@ export const ProductsContextProvider = ({ children }) => {
         loadProducts();
     }, []);
 
+    // 
     const contextValue = {
         products: products,
         isLoading: isLoading,
