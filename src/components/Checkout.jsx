@@ -1,8 +1,14 @@
 import { useRef, useState, useFormStatus } from 'react-dom';
+import { useContext } from 'react';
+import { CartContext } from '../store/cart-context';
 
 export default function Checkout() {
     const formRef = useRef();
     const { pending } = useFormStatus();
+    const { items } = useContext(CartContext);
+
+    const totalPrice = items.reduce((acc, item) => acc + (+item.price) * item.quantity, 0);
+    const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
     return (
         <div>
@@ -42,6 +48,20 @@ export default function Checkout() {
                         <button disabled={pending} className="text-button">{pending ? 'Cancelling...' : 'Cancel'}</button>
                     </div>
                 </div>
+                <div className="cart-items">
+                    {items.map((item) => (
+                        <div key={item.id}>
+                            <span>{item.name}</span>
+                            <span>{item.quantity}</span>
+                            <span>{item.price}</span>
+                        </div>
+                    ))}
+                </div>
+                <div className="cart-total">
+                    <span>Total Price</span>
+                    <span>{formattedTotalPrice}</span>
+                </div>
+                
             </form>
         </div>
     )

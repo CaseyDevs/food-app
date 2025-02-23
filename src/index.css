@@ -214,6 +214,20 @@ h1 {
   border-radius: 4px;
 }
 
+.button:disabled {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.button:disabled:hover,
+.button:disabled:active {
+  background-color: #ccc;
+  border-color: #ccc;
+  color: #666;
+}
+
 .button:hover,
 .button:active {
   background-color: #ffab04;

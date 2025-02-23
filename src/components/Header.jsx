@@ -2,6 +2,7 @@ import { useContext, useState, useRef } from 'react';
 import { CartContext } from '../store/cart-context';
 import CartModal from './CartModal';
 
+
 export default function Header() {
     const { items } = useContext(CartContext);
     const modal = useRef();
@@ -27,7 +28,7 @@ export default function Header() {
                 actions={
                     <>
                         <button className="text-button" onClick={() => modal.current.close()}>Close</button>
-                        <button className="button" onClick={() => modal.current.close()}>Checkout</button>
+                        <button className="button" disabled={items.length === 0} onClick={() => modal.current.close()}>Checkout</button>
                     </>
                 }
             />
