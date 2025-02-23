@@ -24,7 +24,12 @@ export default function Header() {
             <CartModal 
                 ref={modal}
                 title="Cart" 
-                actions={<button onClick={() => modal.current.close()}>Close</button>} 
+                actions={
+                    <>
+                        <button className="text-button" onClick={() => modal.current.close()}>Close</button>
+                        <button className="button" onClick={() => modal.current.close()}>Checkout</button>
+                    </>
+                }
             />
         </>
     )

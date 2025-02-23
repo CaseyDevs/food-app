@@ -16,9 +16,8 @@ export default function Cart() {
                     {/* Map through the items in the cart and display them */}
                     {items.map((item) => {
                         const formattedPrice = `$${(+item.price).toFixed(2)}`;
-                        console.log(formattedPrice);
                         return (
-                            <li key={item.id}>
+                            <li className="cart-item" key={item.id}>
                                 <div>
                                     <span>{item.name}</span>
                                     <span> ({formattedPrice})</span>
@@ -39,13 +38,13 @@ export default function Cart() {
                                     <button onClick={() => updateItemQuantity(item.id, item.quantity + 1)}>
                                         +
                                     </button>
-                                </div>
+                                    </div>
                             </li>
                         );
                     })}
                 </ul>
             )}
-            <p id="cart-total-price">
+            <p className="cart-total-price">
                 Cart Total: <strong>{formattedTotalPrice}</strong>
             </p>
         </div>

@@ -24,10 +24,10 @@ const CartModal = forwardRef(function Modal(
     });
     
     return createPortal(
-        <dialog id="modal" ref={dialog}>
+        <dialog className="modal" ref={dialog}>
             <h2>{title}</h2>
             <Cart />
-            <form method="dialog" id="modal-actions">
+            <form method="dialog" className="modal-actions">
                 {actions}
             </form>
         </dialog>,
