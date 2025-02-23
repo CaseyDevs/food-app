@@ -1,38 +1,36 @@
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-import Cart from './Cart';
+import Checkout from './Checkout';
 
-// Forward the ref to the modal component
-const CartModal = forwardRef(function Modal(
+
+const CheckoutModal = forwardRef(function Modal(
     { title, actions },
     ref
 ) {
-    const dialog = useRef();  // Create a ref for the modal
-   
+    const dialog = useRef();
+
     useImperativeHandle(ref, () => {
         return {
-            // Open the modal
             open: () => {
                 dialog.current.showModal();
             },
-            // Close the modal
             close: () => {
                 dialog.current.close();
             }
         };
     });
-    
+
     return createPortal(
         <dialog className="modal" ref={dialog}>
             <h2>{title}</h2>
-            <Cart />
+            <Checkout />
             <form method="dialog" className="modal-actions">
-                {actions} 
+                {actions}
             </form>
         </dialog>,
         document.getElementById('modal')
     );
 });
 
-export default CartModal;
+export default CheckoutModal;

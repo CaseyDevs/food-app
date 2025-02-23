@@ -1,5 +1,5 @@
-import { useRef, useState, useFormStatus } from 'react-dom';
-import { useContext } from 'react';
+import { useState, useFormStatus } from 'react-dom';
+import { useContext, useRef } from 'react';
 import { CartContext } from '../store/cart-context';
 
 export default function Checkout() {
@@ -11,8 +11,7 @@ export default function Checkout() {
     const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
     return (
-        <div>
-            <h2>Checkout</h2>
+        <div className="checkout">
             <form ref={formRef}>
                 <div className="control">
                     <label htmlFor="name">Name</label>
@@ -42,24 +41,14 @@ export default function Checkout() {
                 </div>
                 <div className="control-row">
                     <div className="control">
-                        <button disabled={pending} className="button">{pending ? 'Submitting...' : 'Confirm'}</button>
+                        <button disabled={pending} className="button">
+                            {pending ? 'Submitting...' : 'Confirm'}
+                        </button>
                     </div>
-                <div className="control">
-                        <button disabled={pending} className="text-button">{pending ? 'Cancelling...' : 'Cancel'}</button>
-                    </div>
-                </div>
-                <div className="cart-items">
-                    {items.map((item) => (
-                        <div key={item.id}>
-                            <span>{item.name}</span>
-                            <span>{item.quantity}</span>
-                            <span>{item.price}</span>
-                        </div>
-                    ))}
                 </div>
                 <div className="cart-total">
-                    <span>Total Price</span>
-                    <span>{formattedTotalPrice}</span>
+                    <p>Total Price:</p>
+                    <p className="cart-total-price">{formattedTotalPrice}</p>
                 </div>
                 
             </form>
