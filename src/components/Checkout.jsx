@@ -11,6 +11,7 @@ export default function Checkout() {
     const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
 
     async function checkoutAction(prevData, formData) {
+        // Create order data object from form data
         const orderData = {
             order: {
                 customer: {
@@ -25,11 +26,13 @@ export default function Checkout() {
             }
         };
 
+        // Validate order data
         const errors = checkoutValidation(orderData);
         if (errors.length > 0) {
             return { errors, enteredValues: orderData };
         }
 
+        // Submit order data to backend
         try {
             const response = await fetch('http://localhost:3000/orders', {
                 method: 'POST',
@@ -45,6 +48,7 @@ export default function Checkout() {
 
             return { errors: null, order: orderData, success: true };
         } catch (error) {
+            // Handle error
             return { 
                 errors: ['Failed to submit order. Please try again.'], 
                 order: orderData 
@@ -52,6 +56,7 @@ export default function Checkout() {
         }
     }
 
+    // Initialise form state and action handler with initial values
     const [formState, formAction] = useActionState(checkoutAction, {
         errors: null,
         enteredValues: {
@@ -137,6 +142,7 @@ export default function Checkout() {
                     <p>Total Price:</p>
                     <p className="cart-total-price">{formattedTotalPrice}</p>
                 </div>
+                
                 {/* Display errors */}
                 {formState.errors && (
                     <ul className="errors">

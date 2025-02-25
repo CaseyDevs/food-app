@@ -18,7 +18,3 @@ export function isNotEmpty(value) {
   export function isValidEmailFormat(value) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
-  
-  export function isTermsAccepted(value) {
-    return value === true || value === "true" || value === 1 || value === "1";
-  }
