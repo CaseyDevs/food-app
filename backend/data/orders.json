@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "customer":{
+            "name":"Casey",
+            "email":"caseypage@mail.com",
+            "street":"sdsadas",
+            "postal-code":"asdsda",
+            "city":"dasd"
+        },
+        "items":[{"id":"m2","name":"Margherita Pizza","price":"12.99","quantity":2}],
+        "totalPrice":25.98,
+        "id":"648.5183443751752"
+    },
+    {
+        "customer":{"name":"Casey","email":"caseypage@mail.com","street":"sdsadas","postal-code":"asdsda","city":"dasd"},"items":[{"id":"m2","name":"Margherita Pizza","price":"12.99","quantity":1},{"id":"m1","name":"Mac & Cheese","price":"8.99","quantity":1}],"totalPrice":21.98,"id":"229.28564085693858"
+    }
+]
