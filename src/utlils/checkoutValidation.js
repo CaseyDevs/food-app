@@ -1,6 +1,8 @@
 import { 
     isNotEmpty,
     isValidEmailFormat,
+    isValidNameFormat,
+    hasMinLength,
 } from './validation';
 
 export function checkoutValidation(data) {
