@@ -1,11 +1,13 @@
 import { useFormStatus } from 'react-dom';
-import { useContext, useActionState, useEffect } from 'react';
+import { useContext, useActionState, useEffect, useState } from 'react';
 import { CartContext } from '../store/cart-context';
 import { checkoutValidation } from '../utlils/checkoutValidation';
 
 export default function Checkout() {
     const { pending } = useFormStatus();
     const { items } = useContext(CartContext);
+    const [checkoutCompleted, setCheckoutCompleted] = useState(false);
+    
 
     const totalPrice = items.reduce((acc, item) => acc + (+item.price) * item.quantity, 0);
     const formattedTotalPrice = `$${totalPrice.toFixed(2)}`;
@@ -81,6 +83,15 @@ export default function Checkout() {
         'postal-code': ''
     };
 
+    // TODO: Add checkout completed message
+    function handleSubmit() {
+        console.log('Checkout completed');
+        setCheckoutCompleted(true);
+        setTimeout(() => {
+            setCheckoutCompleted(false);
+        }, 3000);
+    }
+
     return (
         <div className="checkout">
             <form action={formAction} noValidate>
@@ -133,7 +144,7 @@ export default function Checkout() {
                 </div>
                 <div className="control-row">
                     <div className="control">
-                        <button disabled={pending} className="button">
+                        <button onClick={handleSubmit} disabled={pending} className="button">
                             {pending ? 'Submitting...' : 'Confirm'}
                         </button>
                     </div>
