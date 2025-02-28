@@ -10,6 +10,7 @@ export const CartContext = createContext({
 
 export function CartContextProvider({ children }) {
     const [items, setItems] = useState([]);
+    const [checkoutCompleted, setCheckoutCompleted] = useState();   
     const productsContext = useContext(ProductsContext);
 
     // Add item to cart
@@ -46,12 +47,19 @@ export function CartContextProvider({ children }) {
         setItems((prevItems) => prevItems.map((item) => item.id === id ? { ...item, quantity: amount } : item));
     }
 
+    function handleClearCart() {
+        setItems([]);
+    }
+
     // Pass the items and addItemToCart function using context
     const cartContextValue = {
         items: items,
         addItemToCart: handleAddItemToCart,
         removeItemFromCart: handleRemoveItemFromCart,
         updateItemQuantity: handleUpdateItemQuantity,
+        checkoutCompleted: checkoutCompleted,
+        setCheckoutCompleted: setCheckoutCompleted,
+        clearCart: handleClearCart,
     };
 
     return <CartContext.Provider value={cartContextValue}>

@@ -34,10 +34,5 @@ export function checkoutValidation(data) {
         errors.push('Postal Code is required');
     }
 
-    // Email validation
-    if (isNotEmpty(customerData.email) && !isValidEmailFormat(customerData.email)) {
-        errors.push("Please enter a valid email address");
-    }
-
     return errors;
 }

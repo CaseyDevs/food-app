@@ -4,7 +4,7 @@ import CartModal from './CartModal';
 import CheckoutModal from './CheckoutModal';
 
 export default function Header() {
-    const { items } = useContext(CartContext);
+    const { items, setCheckoutCompleted, clearCart } = useContext(CartContext);
     const cartModal = useRef();
     const checkoutModal = useRef();
 
@@ -26,6 +26,8 @@ export default function Header() {
     // Close the checkout modal
     function handleCloseCheckout() {
         checkoutModal.current.close();
+        setCheckoutCompleted(false);
+        clearCart();
     }
 
     return (
